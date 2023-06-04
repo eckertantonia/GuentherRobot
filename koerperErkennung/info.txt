@@ -1,0 +1,23 @@
+https://github.com/ecd1012/rpi_pose_estimation
+
+sudo pip3 install virtualenv
+python3.X -m venv TFLite-venv
+source TFLite-venv/bin/activate (raus mit deactivate)
+bash get_py_requirements.sh
+
+sudo raspi-config für Kamera-Modul
+
+
+TensorflowLite für raspi
+echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install python3-tflite-runtime
+
+für alle anderen:
+pip3 install --extra-index-url https://google-coral.github.io/py-repo/ tflite_runtime
+
+
+zum loslaufen lassen:
+python3 run_pose_estimation.py --modeldir posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite --output_path images
+
